@@ -5,6 +5,10 @@ VisualStudioVersion = 17.1.32407.343
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "src\Domain\Domain.csproj", "{8845A5CD-B43E-4016-B6B8-AC4919A62E2D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DataBase", "src\Infrastructure.DataBase\Infrastructure.DataBase.csproj", "{38F1058D-99FB-4816-8A65-AF9002AB828A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure.DataBase.Abstract", "src\infrastructure.DataBase.Abstract\Infrastructure.DataBase.Abstract.csproj", "{452734D0-D638-429E-A1F9-744DD6A02DD1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,11 +19,23 @@ Global
 		{8845A5CD-B43E-4016-B6B8-AC4919A62E2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8845A5CD-B43E-4016-B6B8-AC4919A62E2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8845A5CD-B43E-4016-B6B8-AC4919A62E2D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{38F1058D-99FB-4816-8A65-AF9002AB828A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{38F1058D-99FB-4816-8A65-AF9002AB828A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{38F1058D-99FB-4816-8A65-AF9002AB828A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{38F1058D-99FB-4816-8A65-AF9002AB828A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{452734D0-D638-429E-A1F9-744DD6A02DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452734D0-D638-429E-A1F9-744DD6A02DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452734D0-D638-429E-A1F9-744DD6A02DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452734D0-D638-429E-A1F9-744DD6A02DD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D725170-7E68-46FB-8427-76FB98DA8A48}
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{38F1058D-99FB-4816-8A65-AF9002AB828A} = {D1FC1C11-095A-4068-BAB0-605A966E04A9}
+		{452734D0-D638-429E-A1F9-744DD6A02DD1} = {D1FC1C11-095A-4068-BAB0-605A966E04A9}
 	EndGlobalSection
 EndGlobal
