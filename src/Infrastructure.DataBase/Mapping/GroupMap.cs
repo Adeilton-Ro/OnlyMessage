@@ -11,7 +11,5 @@ public class GroupMap : IEntityTypeConfiguration<Group>
         builder.Property(g => g.Name)
             .IsRequired()
             .HasMaxLength(50);
-        builder.Property(g => g.OwnerId)
-            .IsRequired();
     }
 }
