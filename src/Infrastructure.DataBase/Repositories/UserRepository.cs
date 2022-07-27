@@ -15,6 +15,11 @@ public class UserRepository : IUserRepository
     public async Task Create(User user, CancellationToken cancellationToken)
      => await context.Users.AddAsync(user, cancellationToken);
 
+    public Task<User> GetById(Guid Id, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<User> GetByUserName(string userName, CancellationToken cancellationToken)
      => await context.Users.FirstOrDefaultAsync(u => u.UserName == userName, cancellationToken);
 }
