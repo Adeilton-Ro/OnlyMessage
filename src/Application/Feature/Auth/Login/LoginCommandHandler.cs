@@ -29,6 +29,9 @@ public class LoginCommandHandler : IRequestWithResultHandler<LoginCommand, Login
 
         var token = jwtTokenService.GenerateToken(user);
 
-        return Result.OfSuccess(new LoginCommandResponse(token, DateTime.UtcNow.AddHours(8))).Build();
+        return Result.OfSuccess(
+            new LoginCommandResponse(token,
+            new LoginUserCommandResponse(user.UserName, user.Uri), 
+            DateTime.UtcNow.AddHours(8))).Build();
     }
 }
