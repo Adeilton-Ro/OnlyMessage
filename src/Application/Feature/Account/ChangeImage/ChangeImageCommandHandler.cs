@@ -19,6 +19,23 @@ public class ChangeImageCommandHandler : IRequestWithResultHandler<ChangeImageCo
 
     public async Task<Result<ChangeImageCommandResponse>> Handle(ChangeImageCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var user = await userRepository.GetById(request.Id, cancellationToken);
+
+        if (user is null)
+            return Result.OfNotFoundResult("Usuário").Build<ChangeImageCommandResponse>();
+
+        if (user.Uri != fileRepository.GetDefaultImagePath() && request.Image.Length == 0)
+        {
+            fileRepository.DeleteImage(user.Uri);
+            user.Uri = fileRepository.GetDefaultImagePath();
+        }
+        if (request.Image.Length > 0)
+        {
+            fileRepository.SaveUserAvatarImage(user.Id.ToString(), request.Image, request.Extension);
+            user.Uri = fileRepository.GetUserAvatarFilePath(user.Id.ToString(), request.Extension);
+        }
+
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+        return Result.OfSuccess(new ChangeImageCommandResponse(user.Uri)).Build();
     }
 }
