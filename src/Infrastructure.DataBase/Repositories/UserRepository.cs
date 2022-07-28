@@ -22,7 +22,5 @@ public class UserRepository : IUserRepository
      => await context.Users.FirstOrDefaultAsync(u => u.UserName == userName, cancellationToken);
 
     public void Update(User user)
-    {
-        throw new NotImplementedException();
-    }
+        => context.Users.Update(user);
 }

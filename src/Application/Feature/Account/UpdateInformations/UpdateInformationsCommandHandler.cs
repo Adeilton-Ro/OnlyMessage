@@ -12,7 +12,7 @@ public class UpdateInformationsCommandHandler : IRequestWithResultHandler<Update
     private readonly ICryptographyService cryptographyService;
     private readonly IUnitOfWork unitOfWork;
 
-    public UpdateInformationsCommandHandler(IUserRepository userRepository, ICryptographyService cryptographyService, 
+    public UpdateInformationsCommandHandler(IUserRepository userRepository, ICryptographyService cryptographyService,
         IUnitOfWork unitOfWork)
     {
         this.userRepository = userRepository;
@@ -20,8 +20,24 @@ public class UpdateInformationsCommandHandler : IRequestWithResultHandler<Update
         this.unitOfWork = unitOfWork;
     }
 
-    public Task<Result> Handle(UpdateInformationsCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateInformationsCommand request, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        var user = await userRepository.GetById(request.Id, cancellationToken);
+
+        if (await userRepository.GetByUserName(request.Username, cancellationToken) is not null)
+            if (user.UserName != request.Username)
+                return Result.OfUnauthorizedResult("Nome de usuário já existe").Build();
+
+        user.UserName = request.Username;
+        if (!string.IsNullOrEmpty(request.Password))
+        {
+            var salt = cryptographyService.CreateSalt();
+            user.Salt = salt;
+            user.Password = cryptographyService.Hash(request.Password, salt);
+        }
+
+        userRepository.Update(user);
+        await unitOfWork.SaveChangesAsync(cancellationToken);
+        return Result.OfSuccess().Build();
     }
 }
