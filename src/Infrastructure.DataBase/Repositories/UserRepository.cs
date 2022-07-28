@@ -15,6 +15,9 @@ public class UserRepository : IUserRepository
     public async Task Create(User user, CancellationToken cancellationToken)
      => await context.Users.AddAsync(user, cancellationToken);
 
+    public Task<User> GetById(Guid id, CancellationToken cancellationToken)
+        => context.Users.FirstOrDefaultAsync(u => u.Id == id, cancellationToken);
+
     public async Task<User> GetByUserName(string userName, CancellationToken cancellationToken)
      => await context.Users.FirstOrDefaultAsync(u => u.UserName == userName, cancellationToken);
 }

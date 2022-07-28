@@ -12,7 +12,7 @@ public class FileRepository : IFileRepository
 
     public void SaveUserAvatarImage(string id, byte[] image, string extension)
     {
-        var files = Directory.GetFiles("wwwroot/Employees/");
+        var files = Directory.GetFiles("wwwroot/UsersAvatar/");
         var path = "wwwroot" + GetUserAvatarFilePath(id, extension);
         var existingFile = files.FirstOrDefault(f => f.Split(".")[0] == path.Split(".")[0]);
         if (existingFile is not null)
