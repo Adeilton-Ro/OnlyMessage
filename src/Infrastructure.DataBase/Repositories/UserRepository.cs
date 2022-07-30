@@ -20,4 +20,7 @@ public class UserRepository : IUserRepository
 
     public async Task<User> GetByUserName(string userName, CancellationToken cancellationToken)
      => await context.Users.FirstOrDefaultAsync(u => u.UserName == userName, cancellationToken);
+
+    public void Update(User user)
+        => context.Users.Update(user);
 }
