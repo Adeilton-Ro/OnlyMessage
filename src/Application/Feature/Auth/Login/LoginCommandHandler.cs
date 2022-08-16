@@ -1,6 +1,6 @@
 ﻿using Application.Services.Crypto;
 using Application.Services.Token;
-using infrastructure.DataBase.Abstract.Interfaces.Repositories;
+using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 using Utils.Results;
 
 namespace Application.Feature.Auth.Login;

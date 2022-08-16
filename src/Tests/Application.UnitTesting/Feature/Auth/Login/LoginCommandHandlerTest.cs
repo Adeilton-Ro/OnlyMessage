@@ -2,7 +2,7 @@
 using Application.Services.Crypto;
 using Application.Services.Token;
 using Domain.Entities;
-using infrastructure.DataBase.Abstract.Interfaces.Repositories;
+using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 using Moq;
 using System;
 using System.Collections.Generic;

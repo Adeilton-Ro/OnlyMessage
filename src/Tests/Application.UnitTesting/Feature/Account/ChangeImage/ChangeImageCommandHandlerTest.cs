@@ -1,7 +1,7 @@
 ﻿using Application.Feature.Account.ChangeImage;
 using Domain.Entities;
 using infrastructure.DataBase.Abstract.Interfaces;
-using infrastructure.DataBase.Abstract.Interfaces.Repositories;
+using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 using Infrastructure.FileSystem.Abstraction.Interfaces.IFileRepositories;
 using Moq;
 using System;

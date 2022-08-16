@@ -1,6 +1,6 @@
 ﻿using Application.Services.Crypto;
 using infrastructure.DataBase.Abstract.Interfaces;
-using infrastructure.DataBase.Abstract.Interfaces.Repositories;
+using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 using System.Threading;
 using System.Threading.Tasks;
 using Utils.Results;

@@ -10,6 +10,6 @@ public class UserMap : IEntityTypeConfiguration<User>
         builder.HasKey(u => u.Id);
         builder.Property(u => u.UserName).IsRequired().HasMaxLength(50);
         builder.Property(u => u.Password).IsRequired().HasMaxLength(32);
-        builder.HasMany(u => u.Friendships).WithOne(fs => fs.Friend).HasForeignKey(fs => fs.FriendId);
+        builder.HasMany(u => u.Friendships).WithOne(fs => fs.User).HasForeignKey(fs => fs.FriendId);
     }
 }
