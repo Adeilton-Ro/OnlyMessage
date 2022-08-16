@@ -14,7 +14,7 @@ public class AppDbContext : DbContext, IUnitOfWork
     public DbSet<Message<User>> UserMessages { get; set; }
     public DbSet<UserGroup> UserGroups { get; set; }
     public DbSet<FriendRequest> FriendRequests { get; set; }
-    public DbSet<Friendship> FriendshipMaps { get; set; }
+    public DbSet<Friendship> Friendships { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

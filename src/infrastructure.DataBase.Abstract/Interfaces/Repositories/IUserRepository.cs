@@ -1,6 +1,6 @@
 ﻿using Domain.Entities;
 
-namespace infrastructure.DataBase.Abstract.Interfaces.Repositories;
+namespace Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 public interface IUserRepository
 {
     public Task<User> GetByUserName(string userName, CancellationToken cancellationToken);

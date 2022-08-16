@@ -1,5 +1,5 @@
 ﻿using infrastructure.DataBase.Abstract.Interfaces;
-using infrastructure.DataBase.Abstract.Interfaces.Repositories;
+using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 using Infrastructure.FileSystem.Abstraction.Interfaces.IFileRepositories;
 using Utils.Results;
 

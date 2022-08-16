@@ -9,6 +9,7 @@ using Infrastructure.DataBase;
 using Infrastructure.FileSystem;
 using System.Text;
 using Utils;
+using Webapi.MiddlewareConfigs;
 
 namespace Webapi;
 public static class DependencyInjection
@@ -49,8 +50,12 @@ public static class DependencyInjection
             options.AllowCredentials();
         });
 
+        app.UseMiddleware<WebSocketsMiddleware>();
+
         app.UseAuthentication();
         app.UseAuthorization();
+
+        app.AddHubsMappers();
 
         app.UseFastEndpoints();
 

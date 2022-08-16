@@ -1,6 +1,5 @@
 ﻿using Application.Services.Crypto;
 using Domain.Entities;
-using infrastructure.DataBase.Abstract.Interfaces.Repositories;
 using Moq;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,7 @@ using Xunit;
 using Application.Feature.Account.UpdateInformations;
 using Utils.Results;
 using infrastructure.DataBase.Abstract.Interfaces;
+using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 
 namespace Application.UnitTesting.Feature.Account.UpdateInformations;
 public class UpdateInformationsCommandHandlerTest

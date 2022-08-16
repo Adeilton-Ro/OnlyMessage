@@ -1,5 +1,5 @@
 ﻿using infrastructure.DataBase.Abstract.Interfaces;
-using infrastructure.DataBase.Abstract.Interfaces.Repositories;
+using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 using Infrastructure.DataBase.Repositories;
 using Microsoft.Data.Sqlite;
 using Microsoft.EntityFrameworkCore;
@@ -18,6 +18,8 @@ public static class DependencyInjection
 
         services.AddScoped(sp => sp.GetRequiredService<AppDbContext>() as IUnitOfWork);
         services.AddScoped<IUserRepository, UserRepository>();
+        services.AddScoped<IFriendshipRepository, FriendshipRepository>();
+        services.AddScoped<IFriendRequestRepository, FriendRequestRepository>();
 
         return services;
     }
