@@ -12,6 +12,9 @@ public class FriendshipRepository : IFriendshipRepository
         this.context = context;
     }
 
+    public IEnumerable<Friendship> GetFriends(Guid Id, CancellationToken cancellationToken)
+        => context.Friendships.Where(f => f.FriendId == Id);
+
     public Task<bool> IsAlreadyFriends(Guid id, Guid friendId, CancellationToken cancellationToken)
         => context.Friendships.AnyAsync(fs => fs.UserId == id && fs.FriendId == friendId
         || fs.FriendId == id && fs.UserId == friendId );
