@@ -4,7 +4,6 @@ using FastEndpoints;
 using MediatR;
 using Microsoft.AspNetCore.SignalR;
 using Utils.Results;
-using Webapi.Features.Auth.Login;
 using Webapi.Features.Friends.RequestNotification;
 using Webapi.RequestHandling;
 
@@ -40,16 +39,15 @@ public class FriendRequestEndpoint : EndpointWithResult<FriendRequestEndpointReq
         Description(descriptor =>
             descriptor.RequireAuthorization()
             .Accepts<FriendRequestEndpointRequest>("application/json")
-            .Produces<LoginEndpointResponse>(200, "application/json")
+            .Produces<FriendRequestEndpointResponse>(200, "application/json")
             .ProducesValidationProblem()
         );
 
         Summary(s =>
         {
-            s.Summary = "Login";
-            s.Description = "Generates a valid JWT token";
-            s[200] = "When login was successfull";
-            s[401] = "When username or password was wrong";
+            s.Summary = "Friend Request";
+            s.Description = "Send a request to be a friend";
+            s[200] = "When the request was sent successfully";
         });
     }
 }
