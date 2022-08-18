@@ -5,4 +5,5 @@ public interface IFriendshipRepository
 {
     Task Save(Friendship friendship, CancellationToken cancellationToken);
     Task<bool> IsAlreadyFriends(Guid Id, Guid FriendId, CancellationToken cancellationToken);
+    IEnumerable<Friendship> GetFriends(Guid Id, CancellationToken cancellationToken);
 }
