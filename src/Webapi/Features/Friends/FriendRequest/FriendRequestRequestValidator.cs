@@ -6,6 +6,6 @@ public class FriendRequestRequestValidator : Validator<FriendRequestEndpointRequ
 {
     public FriendRequestRequestValidator()
     {
-        RuleFor(fr => fr.FriendId).NotEmpty();
+        RuleFor(fr => fr).Must(fr => fr.Id != fr.FriendId).WithMessage("Você não pode solicitar amizade para você mesmo");
     }
 }
