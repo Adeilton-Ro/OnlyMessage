@@ -15,6 +15,9 @@ public class FriendRequestRepository : IFriendRequestRepository
     public void Delete(FriendRequest friendRequest)
         => context.FriendRequests.Remove(friendRequest);
 
+    public IEnumerable<FriendRequest> GetAll(Guid id, CancellationToken cancellationToken)
+        => context.FriendRequests.Where(fr => fr.FriendId == id);
+
     public async Task<FriendRequest> GetById(Guid id, CancellationToken cancellationToken)
         => await context.FriendRequests.FirstOrDefaultAsync(fr => fr.Id == id, cancellationToken);
 
