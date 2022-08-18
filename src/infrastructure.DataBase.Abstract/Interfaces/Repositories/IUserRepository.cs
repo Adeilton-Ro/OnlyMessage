@@ -7,4 +7,5 @@ public interface IUserRepository
     public Task Create(User user, CancellationToken cancellationToken);
     public Task<User> GetById(Guid Id, CancellationToken cancellationToken);
     public void Update(User user);
+    IEnumerable<User> GetByIds(IEnumerable<Guid> ids);
 }
