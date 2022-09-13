@@ -18,10 +18,14 @@ public static class DependencyInjection
     {
         services.AddOptions<JWTTokenServiceOptions>()
             .Configure<IConfiguration>(
-                (options, configuration) => options.TokenSecret = Encoding.ASCII.GetBytes(configuration.GetValue<string>("JWT_DECRYPT"))
+                (options, configuration) =>
+                {
+                    options.TokenSecret = Encoding.ASCII.GetBytes(configuration.GetValue<string>("JWTOKEN_DECRYPT"));
+                    options.RefreshTokenSecret = Encoding.ASCII.GetBytes(configuration.GetValue<string>("JWREFRESHTOKEN_DECRYPT"));
+                }
             );
 
-        services.AddAuthenticationJWTBearer(configuration.GetValue<string>("JWT_DECRYPT"));
+        services.AddAuthenticationJWTBearer(configuration.GetValue<string>("JWTOKEN_DECRYPT"));
 
         return services;
     }

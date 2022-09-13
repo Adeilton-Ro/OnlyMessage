@@ -3,7 +3,7 @@ using AutoMapper;
 using Utils.Mapping;
 
 namespace Webapi.Features.Auth.Login;
-public record LoginEndpointResponse(string Token, LoginUserEndpointResponse User, DateTime Expiration) : IMappeableFrom<LoginCommandResponse>
+public record LoginEndpointResponse(string Token, string RefreshToken, LoginUserEndpointResponse User, DateTime Expiration) : IMappeableFrom<LoginCommandResponse>
 {
     public void ConfigureMap(Profile profile)
     {

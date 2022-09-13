@@ -8,4 +8,5 @@ public interface IUserRepository
     public Task<User> GetById(Guid Id, CancellationToken cancellationToken);
     public void Update(User user);
     IEnumerable<User> GetByIds(IEnumerable<Guid> ids);
+    IEnumerable<User> Search(Guid id, string seach);
 }

@@ -28,10 +28,11 @@ public class LoginCommandHandler : IRequestWithResultHandler<LoginCommand, Login
             return Result.OfUnauthorizedResult("UserName ou senha incorretos!").Build<LoginCommandResponse>();
 
         var token = jwtTokenService.GenerateToken(user);
+        var refreshToken = jwtTokenService.GenerateRefreshToken();
 
         return Result.OfSuccess(
-            new LoginCommandResponse(token,
+            new LoginCommandResponse(token, refreshToken,
             new LoginUserCommandResponse(user.UserName, user.Uri), 
-            DateTime.UtcNow.AddHours(8))).Build();
+            DateTime.UtcNow.AddHours(2))).Build();
     }
 }
