@@ -2,4 +2,4 @@
 using Utils.Mapping;
 
 namespace Webapi.Features.Users.GetUsers;
-public record GetUsersEndpointResponse(Guid Id, string UserName, string ImageUrl) : IMappeableFrom<GetUsersQueryResponse>;
+public record GetUsersEndpointResponse(Guid Id, string UserName, string ImageUrl, bool IsAlredyRequested) : IMappeableFrom<GetUsersQueryResponse>;

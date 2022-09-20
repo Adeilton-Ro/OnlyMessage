@@ -5,19 +5,17 @@ namespace Application.Feature.Users.GetUsers;
 public class GetUsersQueryHandler : IRequestWithResultHandler<GetUsersQuery, IEnumerable<GetUsersQueryResponse>>
 {
     private readonly IUserRepository userRepository;
-    private readonly IFriendRequestRepository friendRequestRepository;
 
-    public GetUsersQueryHandler(IUserRepository userRepository, IFriendRequestRepository friendRequestRepository)
+    public GetUsersQueryHandler(IUserRepository userRepository)
     {
         this.userRepository = userRepository;
-        this.friendRequestRepository = friendRequestRepository;
     }
 
     public async Task<Result<IEnumerable<GetUsersQueryResponse>>> Handle(GetUsersQuery request, CancellationToken cancellationToken)
     {
-        var users = userRepository.Search(request.Id, request.Search.ToLower());
-        var friendRequests = friendRequestRepository.
+        var response = (await userRepository.Search(request.Id, request.Search.ToLower()))
+            .Select(u => new GetUsersQueryResponse(u.User.Id, u.User.UserName, u.User.Uri, u.IsAlredyRequested));
 
-        return Result.OfSuccess().Build();
+        return Result.OfSuccess(response).Build();
     }
 }
