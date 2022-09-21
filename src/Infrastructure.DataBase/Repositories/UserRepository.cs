@@ -30,7 +30,9 @@ public class UserRepository : IUserRepository
 
     public async Task<IEnumerable<UserIsAlredyRequested>> Search(Guid id, string seach)
     {
-        var friendships = (await context.Users.Include(u => u.Friendships).FirstOrDefaultAsync(u => u.Id == id)).Friendships.Select(fs => fs.UserId);
+        var friendships = (await context.Users.Include(u => u.Friendships).FirstOrDefaultAsync(u => u.Id == id))?.Friendships.Select(fs => fs.UserId);
+
+        friendships ??= new List<Guid>();
 
         var friendRequests = context.FriendRequests.Where(fr => fr.UserId == id || fr.FriendId == id);
 
