@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Utils\Utils.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Feature\Chat\GetFriendMessages\" />
-  </ItemGroup>
-
 </Project>

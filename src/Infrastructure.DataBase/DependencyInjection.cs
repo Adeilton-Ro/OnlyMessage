@@ -20,6 +20,7 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IFriendshipRepository, FriendshipRepository>();
         services.AddScoped<IFriendRequestRepository, FriendRequestRepository>();
+        services.AddScoped<IMessageRepository, MessageRepository>();
 
         return services;
     }
