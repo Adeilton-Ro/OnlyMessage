@@ -5,7 +5,7 @@ using MediatR;
 using Webapi.RequestHandling;
 
 namespace Webapi.Features.Chat.GetMessages;
-public class GetMessagesEndpoint : EndpointWithResultCollection<GetMessagesEndpointRequest, GetMessagesQuery,
+public class GetMessagesEndpoint : EndpointWithResult<GetMessagesEndpointRequest, GetMessagesQuery,
     GetMessagesQueryResponse, GetMessagesEndpointResponse>
 {
     public GetMessagesEndpoint(IMapper mapper, ISender sender) : base(mapper, sender) { }

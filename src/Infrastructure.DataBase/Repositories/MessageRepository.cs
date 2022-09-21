@@ -1,5 +1,6 @@
-﻿using Domain.Entities;
+﻿using Infrastructure.DataBase.Abstract.DTO;
 using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.DataBase.Repositories;
 public class MessageRepository : IMessageRepository
@@ -10,8 +11,9 @@ public class MessageRepository : IMessageRepository
     {
         this.context = context;
     }
-    public IEnumerable<Message<User>> GetChatMessages(Guid id, Guid friendId)
-        => context.UserMessages
-        .Where(um => um.SenderId == id && um.ReceiverId == friendId || um.SenderId == friendId && um.ReceiverId == id)
-        .OrderBy(um => um.Created);
+    public async Task<UserAndFriendMessages> GetChatMessages(Guid id, Guid friendId, CancellationToken cancellationToken)
+        => new UserAndFriendMessages(
+            await context.Users.Include(u => u.Messages).FirstOrDefaultAsync(u => u.Id == id, cancellationToken),
+            await context.Users.Include(u => u.Messages).FirstOrDefaultAsync(u => u.Id == friendId, cancellationToken)
+            );
 }

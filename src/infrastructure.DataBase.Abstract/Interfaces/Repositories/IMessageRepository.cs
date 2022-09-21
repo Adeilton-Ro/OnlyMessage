@@ -1,7 +1,8 @@
 ﻿using Domain.Entities;
+using Infrastructure.DataBase.Abstract.DTO;
 
 namespace Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 public interface IMessageRepository
 {
-    IEnumerable<Message<User>> GetChatMessages(Guid id, Guid friendId);
+    Task<UserAndFriendMessages> GetChatMessages(Guid id, Guid friendId, CancellationToken cancellationToken);
 }

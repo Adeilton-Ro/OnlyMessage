@@ -1,8 +1,5 @@
 ﻿namespace Application.Feature.Chat.GetMessages;
-public record GetMessagesQueryResponse(
-    Guid Id, 
-    string TextMessage, DateTime SendeTime, 
-    GetUserMessagesQueryResponse Sender, 
-    GetUserMessagesQueryResponse Receiver);
+public record GetMessagesQueryResponse(GetUserMessagesQueryResponse MyMessages, GetUserMessagesQueryResponse FriendMessages);
 
-public record GetUserMessagesQueryResponse(Guid Id, string Name, string ImageUrl);
+public record GetUserMessagesQueryResponse(Guid Id, IEnumerable<GetMessageQueryResponse> Messages);
+public record GetMessageQueryResponse(Guid Id, string TextMessage, DateTime SendeTime);
