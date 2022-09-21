@@ -21,12 +21,13 @@ public class GetMessgesQueryHandlerTesting
 		new User
 		{
 			Id = Guid.Parse("4d33f876-2183-4032-b257-940846bbbe5d"),
-			Messages = new List<Message<User>>{}
+			Messages = new List<Message<User>>()
 		},
 		new User
 		{
-			Id = Guid.Parse("305f9c55-784f-456b-b9c4-d114bbda3bcc")
-		},
+			Id = Guid.Parse("305f9c55-784f-456b-b9c4-d114bbda3bcc"),
+			Messages = new List<Message<User>>()
+        },
 		new User
 		{
 			Id= Guid.Parse("872eed50-0914-45ca-bb79-9f42f5ad4086")
