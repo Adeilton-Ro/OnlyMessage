@@ -3,15 +3,12 @@ using AutoMapper;
 using Utils.Mapping;
 
 namespace Webapi.Features.Chat.GetMessages;
-public record GetMessagesEndpointResponse(
-    GetUserMessagesEndpointResponse MyMessages, GetUserMessagesEndpointResponse FriendMessages) : IMappeableFrom<GetMessagesQueryResponse>
+public record GetMessagesEndpointResponse(Guid Id, IEnumerable<MessageEndpointResponse> Messages) : IMappeableFrom<GetMessagesQueryResponse>
 {
     public void ConfigureMap(Profile profile)
     {
         profile.CreateMap(typeof(GetMessagesQueryResponse), GetType());
-        profile.CreateMap(typeof(GetUserMessagesQueryResponse), typeof(GetUserMessagesEndpointResponse));
-        profile.CreateMap(typeof(GetMessageQueryResponse),typeof(GetMessageEndpointResponse));
+        profile.CreateMap(typeof(MessageQueryResponse),typeof(MessageEndpointResponse));
     }
 }
-public record GetUserMessagesEndpointResponse(Guid Id, IEnumerable<GetMessageEndpointResponse> Messages);
-public record GetMessageEndpointResponse(Guid Id, string TextMessage, DateTime SendeTime);
+public record MessageEndpointResponse(Guid Id, string TextMessage, DateTime SendeTime);

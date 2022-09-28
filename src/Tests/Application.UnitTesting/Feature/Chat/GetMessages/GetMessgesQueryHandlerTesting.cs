@@ -1,6 +1,5 @@
 ﻿using Application.Feature.Chat.GetMessages;
 using Domain.Entities;
-using Infrastructure.DataBase.Abstract.DTO;
 using Infrastructure.DataBase.Abstract.Interfaces.Repositories;
 using Moq;
 using System;
@@ -16,21 +15,20 @@ public class GetMessgesQueryHandlerTesting
 {
 	private readonly Mock<IMessageRepository> MessageRepositoryMock = new();
 	private readonly Mock<IFriendshipRepository> FriendshipRepositoryMock = new();
-	private readonly List<User> context = new()
+	private readonly List<Message<User>> context = new()
 	{
-		new User
+		new Message<User>
 		{
-			Id = Guid.Parse("4d33f876-2183-4032-b257-940846bbbe5d"),
-			Messages = new List<Message<User>>()
-		},
-		new User
-		{
-			Id = Guid.Parse("305f9c55-784f-456b-b9c4-d114bbda3bcc"),
-			Messages = new List<Message<User>>()
-        },
-		new User
-		{
-			Id= Guid.Parse("872eed50-0914-45ca-bb79-9f42f5ad4086")
+			Receiver = new User
+			{
+				Id = Guid.Parse("4d33f876-2183-4032-b257-940846bbbe5d"),
+				Messages = new List<Message<User>>()
+			},
+			Sender = new User
+			{
+				Id = Guid.Parse("305f9c55-784f-456b-b9c4-d114bbda3bcc"),
+				Messages = new List<Message<User>>()
+			}
 		}
 	};
 
@@ -44,10 +42,9 @@ public class GetMessgesQueryHandlerTesting
 	};
 	public GetMessgesQueryHandlerTesting()
 	{
-		MessageRepositoryMock.Setup(m => m.GetChatMessages(It.IsAny<Guid>(),It.IsAny<Guid>(),It.IsAny<CancellationToken>()))
-			.ReturnsAsync((Guid id, Guid friendId, CancellationToken ct)=> new UserAndFriendMessages(
-				context.FirstOrDefault(u=>u.Id == id),
-				context.FirstOrDefault(f=>f.Id == friendId)));
+		MessageRepositoryMock.Setup(m => m.GetChatMessages(It.IsAny<Guid>(),It.IsAny<Guid>()))
+			.Returns((Guid id, Guid friendId) => 
+				context.Where(um => um.ReceiverId == id || um.SenderId == id).Where(um => um.ReceiverId == friendId || um.SenderId == friendId));
 
 		FriendshipRepositoryMock.Setup(fsr => fsr.IsAlreadyFriends(It.IsAny<Guid>(), It.IsAny<Guid>(), It.IsAny<CancellationToken>()))
 			.ReturnsAsync(
