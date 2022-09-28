@@ -2,11 +2,11 @@
 {
     public class WebSocketsMiddleware
     {
-        private readonly RequestDelegate _next;
+        private readonly RequestDelegate next;
 
         public WebSocketsMiddleware(RequestDelegate next)
         {
-            _next = next;
+            this.next = next;
         }
 
         public async Task Invoke(HttpContext httpContext)
@@ -18,7 +18,7 @@
                 request.Headers.Add("Authorization", $"Bearer {accessToken}");
             }
 
-            await _next(httpContext);
+            await next(httpContext);
         }
     }
 }

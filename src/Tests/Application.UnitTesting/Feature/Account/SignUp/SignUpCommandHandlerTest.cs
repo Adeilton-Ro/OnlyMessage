@@ -76,7 +76,7 @@ public class SignUpCommandHandlerTest
 
         Assert.Equal(context.Count, 1);
         Assert.False(result.IsSuccess);
-        Assert.Equal(result.Code, ResultCodes.InsufficientPermission);
+        Assert.Equal(result.Code, ResultCodes.Failure);
         Assert.Null(result.Content);
         Assert.NotEmpty(result.Errors);
     }

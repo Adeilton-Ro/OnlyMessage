@@ -51,7 +51,7 @@ public class RemoveFriendshipCommandHandlerTest
         (Mock<IUnitOfWork> unitOfWorkMock, Mock<IFriendshipRepository> friendshipRepositoryMock,
         List<Friendship> context) = GetDependency();
 
-        var request = new RemoveFriendshipCommand(Guid.Parse("afce2ec4c3334de1adbab340e23e7e0b"), Guid.Parse("02a74657-3269-481e-9f98-a0a5a4832301"));
+        var request = new RemoveFriendshipCommand(Guid.Parse("e8468add-f1bf-4eae-af76-6a5bf76acf10"), Guid.Parse("02a74657-3269-481e-9f98-a0a5a4832301"));
         var handler = new RemoveFriendCommandHandler(friendshipRepositoryMock.Object, unitOfWorkMock.Object);
         var result = await handler.Handle(request, CancellationToken.None);
 

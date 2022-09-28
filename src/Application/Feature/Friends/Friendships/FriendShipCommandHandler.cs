@@ -24,7 +24,7 @@ public class FriendShipCommandHandler : IRequestWithResultHandler<FriendShipComm
             return Result.OfNotFoundResult("Pedido de amizade").Build();
 
         if (friendRequest.FriendId != request.UserId)
-            return Result.OfUnauthorizedResult("Você não tem permissão para fazer isso!").Build();
+            return Result.OfFailure("Você não tem permissão para fazer isso!").Build();
 
         friendRequestRepository.Delete(friendRequest);
 

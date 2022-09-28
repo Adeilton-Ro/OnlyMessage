@@ -24,7 +24,7 @@ public class SignUpCommandHandler : IRequestWithResultHandler<SignUpCommand, Sig
     public async Task<Result<SignUpCommandResponse>> Handle(SignUpCommand request, CancellationToken cancellationToken)
     {
         if (await userRepository.GetByUserName(request.UserName, cancellationToken) is not null)
-            return Result.OfUnauthorizedResult("UserName já está em uso!").Build<SignUpCommandResponse>();
+            return Result.OfFailure("UserName já está em uso!").Build<SignUpCommandResponse>();
 
         var salt = cryptography.CreateSalt();
 

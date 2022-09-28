@@ -26,7 +26,7 @@ public class UpdateInformationsCommandHandler : IRequestWithResultHandler<Update
 
         if (await userRepository.GetByUserName(request.Username, cancellationToken) is not null)
             if (user.UserName != request.Username)
-                return Result.OfUnauthorizedResult("Nome de usuário já existe").Build();
+                return Result.OfFailure("Nome de usuário já existe").Build();
 
         user.UserName = request.Username;
         if (!string.IsNullOrEmpty(request.Password))

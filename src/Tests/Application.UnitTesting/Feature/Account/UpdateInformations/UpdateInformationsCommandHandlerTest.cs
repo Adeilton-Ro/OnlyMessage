@@ -80,7 +80,7 @@ public class UpdateInformationsCommandHandlerTest
         var result = await handler.Handle(request, CancellationToken.None);
 
         Assert.False(result.IsSuccess);
-        Assert.Equal(result.Code, ResultCodes.InsufficientPermission);
+        Assert.Equal(result.Code, ResultCodes.Failure);
         Assert.NotEmpty(result.Errors);
     }
 }
