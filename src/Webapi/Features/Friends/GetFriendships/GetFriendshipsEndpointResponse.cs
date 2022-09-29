@@ -3,7 +3,7 @@ using AutoMapper;
 using Utils.Mapping;
 
 namespace Webapi.Features.Friends.GetFriendships;
-public record GetFriendshipsEndpointResponse(Guid Id, Guid FriendId, string UserName, string ImageUrl, GetMessagesFriendshipsQueryResponse LastMessage) : IMappeableFrom<GetFriendshipsQueryResponse>
+public record GetFriendshipsEndpointResponse(Guid Id, Guid FriendId, string UserName, string ImageUrl, GetMessagesFriendshipsQueryResponse? LastMessage) : IMappeableFrom<GetFriendshipsQueryResponse>
 {
     public void ConfigureMap(Profile profile)
     {

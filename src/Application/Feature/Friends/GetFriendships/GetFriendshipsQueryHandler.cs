@@ -20,17 +20,17 @@ namespace Application.Feature.Friends.GetFriendships
             var friendships = friendshipRepository.GetFriends(request.Id, cancellationToken);
             var friendsId = friendships.Select(fs => fs.UserId);
             var user = userRepository.GetByIds(friendsId);
-            var messages = messageRepository.LastsMesssage(request.Id, friendsId);
+            var messages = messageRepository.LastsMesssage(request.Id, friendsId).Where(m => m is not null);
             var response = user.Select(u =>
             {
-                var lastMessage = 
+                var lastMessage =
                     messages.FirstOrDefault(m => m.SenderId == u.Id || m.SenderId == request.Id && m.ReceiverId == request.Id || m.ReceiverId == u.Id);
                 return new GetFriendshipsQueryResponse(
                     friendships.FirstOrDefault(fs => fs.UserId == u.Id).Id,
                     u.Id,
                     u.UserName,
                     u.Uri,
-                    new GetMessagesFriendshipsQueryResponse(lastMessage.Id, lastMessage.TextMessage, lastMessage.Created, lastMessage.SenderId)
+                    lastMessage is null ? null : new GetMessagesFriendshipsQueryResponse(lastMessage.Id, lastMessage.TextMessage, lastMessage.Created, lastMessage.SenderId)
                 );
             });
 

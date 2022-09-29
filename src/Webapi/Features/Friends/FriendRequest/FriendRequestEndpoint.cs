@@ -27,10 +27,9 @@ public class FriendRequestEndpoint : EndpointWithResult<FriendRequestEndpointReq
     {
         var result = await base.AcessApplication(req, ct);
 
-        if(result.IsSuccess && result.Code == ResultCodes.Success)
-        {
+        if(result.IsSuccess && result.Content is not null)
             await hubContext.Clients.User(req.FriendId.ToString()).ReceiveFriendRequestNotification(result.Content);
-        }
+
         await base.SendResponse(result, ct);
     }
 
