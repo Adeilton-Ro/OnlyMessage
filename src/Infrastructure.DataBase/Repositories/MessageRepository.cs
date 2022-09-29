@@ -10,6 +10,10 @@ public class MessageRepository : IMessageRepository
     {
         this.context = context;
     }
+
+    public async Task AddMessage(Message<User> message, CancellationToken cancellationToken)
+        => await context.AddAsync(message, cancellationToken);
+
     public IEnumerable<Message<User>> GetChatMessages(Guid id, Guid friendId)
         => context.UserMessages.Where(um => um.ReceiverId == id || um.SenderId == id).Where(um => um.ReceiverId == friendId || um.SenderId == friendId);
 
