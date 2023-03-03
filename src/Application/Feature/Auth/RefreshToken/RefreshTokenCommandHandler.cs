@@ -13,10 +13,10 @@ public class RefreshTokenCommandHandler : IRequestWithResultHandler<RefreshToken
     public async Task<Result<RefreshTokenCommandResponse>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
     {
         if (!tokenService.IsValidToken(request.Token))
-            return Result.OfUnauthorizedResult("Token inválido").Build<RefreshTokenCommandResponse>();
+            return Result.OfFailure("Token inválido").Build<RefreshTokenCommandResponse>();
 
         if(!tokenService.IsValidRefreshToken(request.RefreshToken))
-            return Result.OfUnauthorizedResult("Token inválido").Build<RefreshTokenCommandResponse>();
+            return Result.OfFailure("Token inválido").Build<RefreshTokenCommandResponse>();
 
         var claim = tokenService.GetClaimFromToken(request.Token);
 

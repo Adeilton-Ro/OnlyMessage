@@ -22,7 +22,7 @@ namespace Application.Feature.Friends.RemoveFriendship
                 return Result.OfNotFoundResult("Amizade").Build();
 
             if (userFriendship.FriendId != request.UserId)
-                return Result.OfUnauthorizedResult("Você não pode remover amizade de outras pessoas").Build();
+                return Result.OfFailure("Você não pode remover amizade de outras pessoas").Build();
 
             friendshipRepository.Remove(userFriendship);
 

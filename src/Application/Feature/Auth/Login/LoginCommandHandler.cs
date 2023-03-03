@@ -22,10 +22,10 @@ public class LoginCommandHandler : IRequestWithResultHandler<LoginCommand, Login
     {
         var user = await userRepository.GetByUserName(request.UserName, cancellationToken);
         if (user is null)
-            return Result.OfUnauthorizedResult("UserName ou senha incorretos!").Build<LoginCommandResponse>();
+            return Result.OfFailure("UserName ou senha incorretos!").Build<LoginCommandResponse>();
 
         if (!cryptography.Compare(user.Password, request.Password, user.Salt))
-            return Result.OfUnauthorizedResult("UserName ou senha incorretos!").Build<LoginCommandResponse>();
+            return Result.OfFailure("UserName ou senha incorretos!").Build<LoginCommandResponse>();
 
         var token = jwtTokenService.GenerateToken(user);
         var refreshToken = jwtTokenService.GenerateRefreshToken();
