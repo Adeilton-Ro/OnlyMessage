@@ -32,7 +32,7 @@ public class JwtTokenService : ITokenService
             Subject = new ClaimsIdentity(claims),
             Issuer = "https://OnlyMessage",
             Audience = "OnlyMessage",
-            Expires = DateTime.Now.AddHours(8),
+            Expires = DateTime.UtcNow.AddHours(2),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
         };
 
@@ -92,7 +92,9 @@ public class JwtTokenService : ITokenService
             {
                 ValidIssuer = "https://OnlyMessage",
                 ValidAudience = "OnlyMessage",
-                IssuerSigningKey = new SymmetricSecurityKey(key)
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                RequireExpirationTime = false,
+                ValidateLifetime= false
             }).IsValid;
 
     public ClaimsPrincipal GetClaimFromToken(string token)
@@ -101,6 +103,7 @@ public class JwtTokenService : ITokenService
         {
             ValidIssuer = "https://OnlyMessage",
             ValidAudience = "OnlyMessage",
+            ValidateLifetime= false,
             IssuerSigningKey = new SymmetricSecurityKey(key)
         };
 
