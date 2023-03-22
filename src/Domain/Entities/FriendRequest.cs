@@ -5,5 +5,6 @@ public class FriendRequest : Entity
 {
     public Guid UserId { get; set; }
     public User User { get; set; }
+    public Guid FriendId { get; set; }
     public DateTime Created { get; set; }
 }

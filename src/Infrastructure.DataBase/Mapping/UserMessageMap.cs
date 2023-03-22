@@ -13,8 +13,8 @@ public class UserMessageMap : IEntityTypeConfiguration<Message<User>>
         builder.Property(um => um.Created)
             .HasColumnName("timestamp without time zone")
             .IsRequired();
-        builder.HasOne(um => um.Receiver)
+        builder.HasOne(um => um.Sender)
             .WithMany(u => u.Messages)
-            .HasForeignKey(um => um.ReceiverId);
+            .HasForeignKey(um => um.SenderId);
     }
 }

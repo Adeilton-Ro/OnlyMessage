@@ -26,7 +26,7 @@ será necessario ter o docker e o git instalados na maquina.
 	cd OnlyMessage
 	dotnet restore
 	docker build -t backend -f Dockerfile .
-	docker run --name onlymessage backend
+	docker run -d -p 3000:80 --name onlymessage backend
 ```
 
 quer saber mais sobre a aplicação? <a href=".github/Regras.md">Clique aqui!</a>
